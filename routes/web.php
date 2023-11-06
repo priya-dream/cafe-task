@@ -49,11 +49,13 @@ Route::get('/dashboard/client/delete/{id}',[ClientController::class,'delete']);
 
 Route::get('/dashboard/client/show/{id}',[ClientController::class,'show'])->name('client.show');
 
-Route::get('/dashboard/clients/create', [MailController::class,'send_email']);
+Route::get('/dashboard/client/search',[ClientController::class,'search'])->name('client-search');
+
+//Route::get('/dashboard/clients/create', [MailController::class,'send_email']);
 //Route::get('sendemail', [MailController::class,'send_email']);
 
-Route::get('/mail',function(){
-    Mail::to('priya02laravel@gmail.com')
-    ->send(new TestMail());
-});
+// Route::get('/mail',function(){
+//     Mail::to('priya02laravel@gmail.com')
+//     ->send(new TestMail());
+// });
 

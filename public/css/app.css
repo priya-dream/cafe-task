@@ -1478,6 +1478,7 @@ select {
 .addclient-btn{
   width: 230px;
   margin-left: 680px;
+  margin-top: 20px;
   padding: 5px;
   background-color: black;
   color: white;
@@ -1495,6 +1496,7 @@ select {
   font-size: 20px;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .edit-btn{
@@ -1596,6 +1598,29 @@ select {
   width:130px;
   height:130px;
   margin-left: 120px;
+}
+
+.active-btn{
+  background-color:green;
+  color:white;
+  border:none;
+  border-radius:2px;
+  padding: 2px;
+}
+
+.inactive-btn{
+  background-color:red;
+  color:white;
+  border:none;
+  border-radius:2px;
+  padding: 2px;
+}
+
+.search-btn{
+  border-radius:5px;
+  width:200px;
+  margin-left:520px;
+  margin-bottom:30px"
 }
 
 

@@ -40,16 +40,20 @@
                 $month = date('m',$date);
                 $year  = date('Y',$date);
 
+                $current_date = date('Y-m-d');
+                $date1  = strtotime($current_date);
+                $current_year  = date('Y',$date1);
+
             ?>
             <div class="col">
                 Date of Birth <span style="color:red">*</span>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                       <select id ="byear" name="byear" class="form-control">
-                        <option value="" disabled selected>{{$year}}</option>
-                        <?php $year=1950;
-                        for($year;$year<2023;$year++){
-                          echo '<option>'.$year.'</option>';
+                        <option value="{{$year}}" selected>{{$year}}</option>
+                        <?php $y=1950;
+                        for($y;$y<$current_year;$y++){
+                          echo '<option value='.$year.'selected>'.$y.'</option>';
                         }?>
                       </select>
                     </div>

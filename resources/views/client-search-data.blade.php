@@ -23,7 +23,6 @@
         </td>
         </tr></table>
     </form></br>
-
         @if ($message = Session::get('success'))
         <div class="alert alert-success" ">
             <p>{{ $message }}</p>
@@ -45,7 +44,7 @@
                 <th>Actions</th>
             </tr>
             <?php $i=1;?>
-            @foreach($client as $res)
+            @foreach($result as $res)
             <tr>
                 <td>{{$i}}</td>
                 <?php
@@ -80,7 +79,7 @@
 
 
         </table>
-        <div class="row">{{$client->appends($filter)->links()}}</div>
+        {{-- <div class="row">{{$result->appends($filter)->links()}}</div> --}}
 
     </div>
 

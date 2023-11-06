@@ -1,16 +1,20 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use App\Models\Client;
 use DB;
+use Mail;
+use App\Mail\TestMail;
 
 class ClientController extends Controller
 {
-    public function index(){
+    public function index(Request $req){
+        $filter=$req->input('filter');
         $client = DB::table('clients')->select()->paginate(5);
         //return $client->fname;
-        return view('clients-data',compact('client'));
+        return view('clients-data',compact('client','filter'));
     }
 
     public function add_form(){
@@ -57,6 +61,8 @@ class ClientController extends Controller
                 'status' => $req->input('status'),
             ]);
         }
+        // $user = "priya02laravel@gmail.com";
+        // Mail::to($user)->send(new TestMail($user));
         return redirect('/dashboard/clients')->with('success','New Client Added Successfully');
         }
     }
@@ -101,6 +107,20 @@ class ClientController extends Controller
     public function show($id){
         $record = Client::find($id);
         return response()->json($record);
+
+    }
+
+    public function search(Request $req){
+        $search = $req->input('search');
+        $filter = $req->input('filter');
+        $result = DB::table('clients')->select('id','image','fname','lname','contact','email','dob','gender','street_no','street_address','city','status')
+            ->where('fname', 'LIKE', '%'.$search.'%')
+            ->orWhere('email', 'LIKE', '%'.$search.'%')
+            ->orWhere('contact', 'LIKE', '%'.$search.'%')
+            ->get();
+
+           return view('client-search-data',compact('result','filter'));
+
 
     }
 
