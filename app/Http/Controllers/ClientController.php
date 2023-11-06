@@ -24,28 +24,39 @@ class ClientController extends Controller
         $dob = $year.'-'.$month.'-'.$day;
 
         $date = date('Y-m-d');
+        // if($dob>$date){
+        //     return "Invalid dob";
+        // }else{
+        //     return "Valid dob";
+        // }
 
         $email = $req->input('email');
         $y = DB::table('clients')->select('id')->where('email',$email)->count();
 
         if($y>0){
-            return redirect('dashboard/clients/add-new')->with('error','Email already Exist..');
-        }elseif($dob>$date){
-            return redirect('dashboard/clients/add-new')->with('error','Invalid DOB');
+            if($dob>$date){
+                return redirect('dashboard/clients/add-new')->with('error','Email already Exist.. And Invalid DOB..');
+            }else{
+                return redirect('dashboard/clients/add-new')->with('error','Email already Exist..');
+            }
         }else{
-        DB::table('clients')->insert([
-            'fname' => $req->input('fname'),
-            'lname' => $req->input('lname'),
-            'dob' => $dob,
-            'contact' => $req->input('contact'),
-            'email' => $req->input('email'),
-            'image' => $req->input('image'),
-            'gender' => $req->input('gender'),
-            'street_no' => $req->input('street_no'),
-            'street_address' => $req->input('street_address'),
-            'city' => $req->input('city'),
-            'status' => $req->input('status'),
-        ]);
+            if($dob>$date){
+            return redirect('dashboard/clients/add-new')->with('error','Invalid DOB');}
+            else{
+                DB::table('clients')->insert([
+                'fname' => $req->input('fname'),
+                'lname' => $req->input('lname'),
+                'dob' => $dob,
+                'contact' => $req->input('contact'),
+                'email' => $req->input('email'),
+                'image' => $req->input('image'),
+                'gender' => $req->input('gender'),
+                'street_no' => $req->input('street_no'),
+                'street_address' => $req->input('street_address'),
+                'city' => $req->input('city'),
+                'status' => $req->input('status'),
+            ]);
+        }
         return redirect('/dashboard/clients')->with('success','New Client Added Successfully');
         }
     }

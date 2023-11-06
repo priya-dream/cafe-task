@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MailController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,4 +51,9 @@ Route::get('/dashboard/client/show/{id}',[ClientController::class,'show'])->name
 
 Route::get('/dashboard/clients/create', [MailController::class,'send_email']);
 //Route::get('sendemail', [MailController::class,'send_email']);
+
+Route::get('/mail',function(){
+    Mail::to('priya02laravel@gmail.com')
+    ->send(new TestMail());
+});
 
